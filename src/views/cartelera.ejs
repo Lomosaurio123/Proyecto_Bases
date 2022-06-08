@@ -1,0 +1,75 @@
+<%- include('partials/_header') %>
+
+<h1>HORARIOS</h1>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-8">
+            
+            <table class="table table-bordered table-hover">
+                
+                <thead>
+                    <tr>
+                        <th>n°</th>
+                        <th>Dia</th>
+                        <th>Hora Inicio</th>
+                        <th>Hora Fin</th>
+                        <th>Eliminar</th>
+                        <th>Actualizar</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                  <% if (data) { %>
+                    <% for ( var i = 0; i < data.length; i++ ) { %>
+                        <tr>
+                            <td><%= ( i + 1 )%></td>
+                            <td><%= data[i].Dia %></td>
+                            <td><%= data[i].HoraInicio %></td>
+                            <td><%= data[i].HoraFin %></td>
+                            <td>
+                                <a href="/delete-cartelera/<%= data[i].idCartelera%>" class="btn btn-danger"> DELETE </a>
+                            </td>
+                            <td>
+                                <a href="/update-cartelera/<%= data[i].idCartelera%>" class="btn btn-info"> UPDATE </a>
+                            </td>
+                        </tr>
+                    <% } %>     
+                  <% } %>  
+                </tbody>
+
+            </table>
+            
+        </div>
+    
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+
+                    <form action="/add-cartelera" method="post">
+
+                        <div class="form-group">
+                            <input type="date" name="Dia" class="form-control">
+                        </div>
+        
+                        <div class="form-group">
+                            <input type="time" name="HoraInicio" class="form-control">
+                        </div>
+        
+                        <div class="form-group">
+                            <input type="time" name="HoraFin" class="form-control">
+                        </div>
+        
+                        <button type="submit" class="btn btn-primary"> Save </button>
+        
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<%- include('partials/_footer') %>

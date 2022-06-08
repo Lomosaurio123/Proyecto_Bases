@@ -1,0 +1,132 @@
+<%- include('partials/_header') %>
+
+<h1>ACTUALIZANDO VALORES DE PAIS</h1>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    
+                    <form action="/update-pelicula/<%= data[0][0].idPelicula%>" method="post">
+                        
+                        <div class="form-group">
+                            <input type="text" name="Titulo" class="form-control" placeholder="Titulo" value="<%= data[0][0].Titulo%>">
+                        </div>
+        
+                        <div class="form-group">
+                            <input type="text" name="Ano" class="form-control" placeholder="Año" value="<%= data[0][0].Ano%>">
+                        </div>
+
+                        <div class="form-group">
+                            <textarea name="SinopsisPelicula" id="SinopsisPelicula" cols="30" rows="10" class="form-control" placeholder="Sinopsis Pelicula"> <%= data[0][0].SinopsisPelicula%> </textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" name="Reparto" class="form-control" placeholder="Reparto" value="<%= data[0][0].Reparto%>">
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" name="Fotografia" class="form-control" placeholder="Fotografia" value="<%= data[0][0].Fotografia%>">
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" name="Duracion" class="form-control" placeholder="Duración" value="<%= data[0][0].Duracion%>">
+                        </div>
+
+                        <div class="form-group">
+                            <select class="form-control" name= "idDirector" id="idDirector">
+                                <option selected>Selecciona Director</option>
+                                <%for( var i = 0; i < data[2].length; i++ ) {%>
+                                    <% if(data[2][i].idDirector == data[0][0].idDirector ) { %>
+                                        <option value = "<%= data[2][i].idDirector %>" selected><%= data[2][i].Nombre %></option>   
+                                    <%} else {%>
+                                        <option value = "<%= data[2][i].idDirector %>"><%= data[2][i].Nombre %></option>   
+                                    <% } %>
+                                <% } %>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <select class="form-control" name= "Pais_idPais" id="Pais_idPais">
+                                <option selected>Selecciona País</option>
+                                <%for( var i = 0; i < data[3].length; i++ ) {%>
+                                    <% if(data[3][i].idPais == data[0][0].Pais_idPais ) { %>
+                                        <option value = "<%= data[3][i].idPais %>" selected><%= data[3][i].Nombre %></option> 
+                                    <%} else {%>
+                                        <option value = "<%= data[3][i].idPais %>"><%= data[3][i].Nombre %></option>   
+                                    <% } %>
+                                <% } %>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <select class="form-control" name= "TipoCine_idTipoCine" id="TipoCine_idTipoCine">
+                                <option selected>Selecciona Tipo de Pelicula</option>
+                                <%for( var i = 0; i < data[4].length; i++ ) {%>
+                                    <% if(data[4][i].idTipoCine == data[0][0].TipoCine_idTipoCine ) { %>
+                                        <option value = "<%= data[4][i].idTipoCine %>" selected><%= data[4][i].TipoCine %></option>
+                                    <%} else {%>
+                                        <option value = "<%= data[4][i].idTipoCine %>"><%= data[4][i].TipoCine %></option>   
+                                    <% } %>
+                                <% } %>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary"> Save </button>
+        
+                        
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-5">
+
+            <h3>Valores Actuales: </h3>
+            
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    
+                    <thead>
+                        <tr>
+                            <th>Titulo</th>
+                            <th>Año</th>
+                            <th>Sinopsis</th>
+                            <th>Reparto</th>
+                            <th>Fotografia</th>
+                            <th>Duracion</th>
+                            <th>Director</th>
+                            <th>Pais</th>
+                            <th>Tipo</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                            <tr>
+                            
+                                <td><%= data[1][0].Titulo %></td>
+                                <td><%= data[1][0].Ano %></td>
+                                <td><%= data[1][0].SinopsisPelicula %></td>
+                                <td><%= data[1][0].Reparto %></td>
+                                <td><img src="<%= data[1][0].Fotografia %>" class="img-fluid" alt="img"></td>
+                                <td><%= data[1][0].Duracion %></td>
+                                <td><%= data[1][0].NombreDirector %></td>
+                                <td><%= data[1][0].Nombrepais %></td>
+                                <td><%= data[1][0].TipoCine %></td>
+            
+                            </tr>
+
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<%- include('partials/_footer') %>

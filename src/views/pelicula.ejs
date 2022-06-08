@@ -1,0 +1,128 @@
+<%- include('partials/_header') %>
+
+<h1>DIRECTORES</h1>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-8">
+            
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    
+                    <thead>
+                        <tr>
+                            <th>n°</th>
+                            <th>Titulo</th>
+                            <th>Año</th>
+                            <th>Sinopsis</th>
+                            <th>Reparto</th>
+                            <th>Fotografia</th>
+                            <th>Duracion</th>
+                            <th>Director</th>
+                            <th>Pais</th>
+                            <th>Tipo</th>
+                            <th>Eliminar</th>
+                            <th>Actualizar</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    <% if (data) { %>
+                        <% for ( var i = 0; i < data[0].length; i++ ) { %>
+                            <tr>
+                                <td><%= ( i + 1 )%></td>
+                                <td><%= data[0][i].Titulo %></td>
+                                <td><%= data[0][i].Ano %></td>
+                                <td><%= data[0][i].SinopsisPelicula %></td>
+                                <td><%= data[0][i].Reparto %></td>
+                                <td><img src="<%= data[0][i].Fotografia %>" alt="img" class="img-fluid"></td>
+                                <td><%= data[0][i].Duracion %></td>
+                                <td><%= data[0][i].NombreDirector %></td>
+                                <td><%= data[0][i].Nombrepais %></td>
+                                <td><%= data[0][i].TipoCine %></td>
+                                <td>
+                                    <a href="/delete-pelicula/<%= data[0][i].idPelicula%>" class="btn btn-danger"> DELETE </a>
+                                </td>
+                                <td>
+                                    <a href="/update-pelicula/<%= data[0][i].idPelicula%>" class="btn btn-info"> UPDATE </a>
+                                </td>
+                            </tr>
+                        <% } %>     
+                    <% } %>  
+                    </tbody>
+
+                </table>
+            </div>
+            
+        </div>
+    
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+
+                    <form action="/add-pelicula" method="post">
+        
+                        <div class="form-group">
+                            <input type="text" name="Titulo" class="form-control" placeholder="Titulo">
+                        </div>
+        
+                        <div class="form-group">
+                            <input type="text" name="Ano" class="form-control" placeholder="Año">
+                        </div>
+
+                        <div class="form-group">
+                            <textarea name="SinopsisPelicula" id="SinopsisPelicula" cols="30" rows="10" class="form-control" placeholder="Sinopsis Pelicula"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" name="Reparto" class="form-control" placeholder="Reparto">
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" name="Fotografia" class="form-control" placeholder="Fotografia">
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" name="Duracion" class="form-control" placeholder="Duración">
+                        </div>
+
+                        <div class="form-group">
+                            <select class="form-control" name= "idDirector" id="idDirector">
+                                <option selected>Selecciona Director</option>
+                                <%for( var i = 0; i < data[1].length; i++ ) {%>
+                                    <option value = "<%= data[1][i].idDirector %>"><%= data[1][i].Nombre %></option>   
+                                <% } %>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <select class="form-control" name= "Pais_idPais" id="Pais_idPais">
+                                <option selected>Selecciona País</option>
+                                <%for( var i = 0; i < data[2].length; i++ ) {%> 
+                                    <option value = "<%= data[2][i].idPais %>"><%= data[2][i].Nombre %></option>   
+                                <% } %>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <select class="form-control" name= "TipoCine_idTipoCine" id="TipoCine_idTipoCine">
+                                <option selected>Selecciona Tipo de Pelicula</option>
+                                <%for( var i = 0; i < data[3].length; i++ ) {%>
+                                    <option value = "<%= data[3][i].idTipoCine %>"><%= data[3][i].TipoCine %></option>   
+                                <% } %>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary"> Save </button>
+        
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<%- include('partials/_footer') %>

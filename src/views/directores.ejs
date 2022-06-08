@@ -1,0 +1,81 @@
+<%- include('partials/_header') %>
+
+<h1>DIRECTORES</h1>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-8">
+            
+            <table class="table table-sm table-bordered table-hover">
+                
+                <thead>
+                    <tr>
+                        <th>n°</th>
+                        <th>Nombre</th>
+                        <th>Ap.Paterno</th>
+                        <th>Ap.Materno</th>
+                        <th>Biografia</th>
+                        <th>Eliminar</th>
+                        <th>Actualizar</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                  <% if (data) { %>
+                    <% for ( var i = 0; i < data.length; i++ ) { %>
+                        <tr>
+                            <td><%= ( i + 1 )%></td>
+                            <td><%= data[i].Nombre %></td>
+                            <td><%= data[i].ApellidoPaterno %></td>
+                            <td><%= data[i].ApellidoMaterno %></td>
+                            <td><%= data[i].Biografia %></td>
+                            <td>
+                                <a href="/delete-director/<%= data[i].idDirector%>" class="btn btn-danger"> DELETE </a>
+                            </td>
+                            <td>
+                                <a href="/update-director/<%= data[i].idDirector%>" class="btn btn-info"> UPDATE </a>
+                            </td>
+                        </tr>
+                    <% } %>     
+                  <% } %>  
+                </tbody>
+
+            </table>
+            
+        </div>
+    
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+
+                    <form action="/add-director" method="post">
+        
+                        <div class="form-group">
+                            <input type="text" name="Nombre" class="form-control" placeholder="Nombre">
+                        </div>
+        
+                        <div class="form-group">
+                            <input type="text" name="ApellidoPaterno" class="form-control" placeholder="Apellido Paterno">
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="text" name="ApellidoMaterno" class="form-control" placeholder="Apellido Materno">
+                        </div>
+
+                        <div class="form-group">
+                            <textarea name="Biografia" id="Biografia" cols="30" rows="10" class="form-control" placeholder="Biografia"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary"> Save </button>
+        
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<%- include('partials/_footer') %>

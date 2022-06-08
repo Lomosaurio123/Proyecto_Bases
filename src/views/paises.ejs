@@ -1,0 +1,63 @@
+<%- include('partials/_header') %>
+
+<h1>PAISES</h1>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-8">
+            
+            <table class="table table-sm table-bordered table-hover">
+                
+                <thead>
+                    <tr>
+                        <th>n°</th>
+                        <th>Pais</th>
+                        <th>Eliminar</th>
+                        <th>Actualizar</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                  <% if (data) { %>
+                    <% for ( var i = 0; i < data.length; i++ ) { %>
+                        <tr>
+                            <td><%= ( i + 1 )%></td>
+                            <td><%= data[i].Nombre %></td>
+                            <td>
+                                <a href="/delete-pais/<%= data[i].idPais %>" class="btn btn-danger"> DELETE </a>
+                            </td>
+                            <td>
+                                <a href="/update-pais/<%= data[i].idPais %>" class="btn btn-info"> UPDATE </a>
+                            </td>
+                        </tr>
+                    <% } %>     
+                  <% } %>  
+                </tbody>
+
+            </table>
+            
+        </div>
+    
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+
+                    <form action="/add-pais" method="post">
+        
+                        <div class="form-group">
+                            <input type="text" name="Nombre" class="form-control" placeholder="Nombre">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary"> Save </button>
+        
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<%- include('partials/_footer') %>
